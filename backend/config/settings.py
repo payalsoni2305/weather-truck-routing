@@ -48,6 +48,9 @@ if FRONTEND_DIST.exists():
     WHITENOISE_ROOT = FRONTEND_DIST
     WHITENOISE_INDEX_FILE = True
 
+# OpenStreetMap tiles require a Referer header; Django's default "same-origin" strips it.
+SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+
 CORS_ALLOWED_ORIGINS = env_list("CORS_ALLOWED_ORIGINS", "http://localhost:5173")
 
 REST_FRAMEWORK = {
